@@ -64,4 +64,16 @@ public class Animal {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "color='" + color + '\'' +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", id=" + id +
+                ", type='" + type + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
