@@ -8,12 +8,15 @@ public class Main {
         String password = "711267";
 
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
-            String query = "Select id, name FROM animals";
+            String query = "Select * name FROM animals";
             try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
                 while (rs.next()) {
-                    int id = rs.getInt("id");
+                    long id = rs.getLong("id");
                     String name = rs.getString("name");
-                    System.out.println(id + ": " + name);
+                    int weight = rs.getInt("weight");
+                    String color = rs.getString("color");
+                    String type = rs.getString("type");
+                    int age = rs.getInt("age");
                 }
             }
         } catch (SQLException e) {
