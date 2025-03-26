@@ -31,10 +31,6 @@ public class ConnectionManager {
                 return instance;
         }
 
-        public static ResultSet ExecuteQuery(String sqlRequest) {
-                return null;
-        }
-
         public ResultSet executeQueryWithAnswer(String query) throws SQLException {
                 return statement.executeQuery(query);
         }

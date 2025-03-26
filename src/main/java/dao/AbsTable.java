@@ -17,14 +17,11 @@ public abstract class AbsTable {
 
     public void create() {
         String sqlRequest = String.format("CREATE TABLE IF NOT EXISTS %s (%s)", this.tableName, convertMapColumnsToString());
-        System.out.println(sqlRequest);
-        ConnectionManager.ExecuteQuery(sqlRequest);
-//
-//        try {
-//            ConnectionManager.getInstance().executeQuery(sqlRequest);
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            ConnectionManager.getInstance().executeQuery(sqlRequest);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private String convertMapColumnsToString() {
