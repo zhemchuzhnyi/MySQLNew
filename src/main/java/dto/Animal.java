@@ -8,13 +8,17 @@ public class Animal {
     private String type;
     private int age;
 
-    public Animal(String name, String color, int weight, long id, int age, String type) {
-        this.name = name;
+    public Animal(){
+
+    }
+
+    public Animal(String color, String name, int weight, long id, String type, int age) {
         this.color = color;
+        this.name = name;
         this.weight = weight;
         this.id = id;
-        this.age = age;
         this.type = type;
+        this.age = age;
     }
 
     public String getColor() {
@@ -25,28 +29,12 @@ public class Animal {
         this.color = color;
     }
 
-    public int getAge() {
-        return age;
+    public String getName() {
+        return name;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getWeight() {
@@ -57,12 +45,28 @@ public class Animal {
         this.weight = weight;
     }
 
-    public String getName() {
-        return name;
+    public long getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
