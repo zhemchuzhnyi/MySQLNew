@@ -3,27 +3,48 @@ package utils;
 import java.sql.*;
 
 public class ConnectionManager {
-        private static final String url = "jdbc:mysql://sql.home.kartushin.su:3306/test";
-        private static final String user = "admin";
-        private static final String password = "711267";
+        private final String url = System.getenv("url");
+        private final String user = System.getenv("login");
+        private final String password = System.getenv("pass");
 
-        private ConnectionManager() {
-        }
+        private Connection connection;
+        private Statement statement;
 
-        public static Connection getConnection() throws SQLException {
-                return DriverManager.getConnection(url, user, password);
-        }
+        private static ConnectionManager instance;
 
-        public static ResultSet ExecuteQuery(String query) {
-                try (Connection conn = getConnection()) {
-                        try (Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
-                                return rs;
-                        }
-
-                } catch (Exception e) {
-                        System.out.println("error");
+        private ConnectionManager(){
+                try {
+                        connection = DriverManager.getConnection(url, user, password);
+                } catch (SQLException e) {
+                        throw new RuntimeException(e);
                 }
+                try {
+                        statement = connection.createStatement();
+                } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                }
+        }
 
-            return null;
+        public static ConnectionManager getInstance(){
+                if(instance == null)
+                        instance = new ConnectionManager();
+                return instance;
+        }
+
+        public static ResultSet ExecuteQuery(String sqlRequest) {
+                return null;
+        }
+
+        public ResultSet executeQueryWithAnswer(String query) throws SQLException {
+                return statement.executeQuery(query);
+        }
+
+        public void executeQuery(String query) throws SQLException {
+                statement.executeUpdate(query);
+        }
+
+        public void close() throws SQLException {
+                statement.close();
+                connection.close();
         }
 }
